@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int i = 0\n\nwhile i < 5\n    print i\n    i += 1\n\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "0\n1\n2\n3\n4\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

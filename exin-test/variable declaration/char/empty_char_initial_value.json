@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "char c = ''\n\nprint c\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nchar c = ''\nSyntaxError: empty character constant\n",
+        "returncode": "3"
+    }
+}

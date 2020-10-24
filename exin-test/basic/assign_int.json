@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int a, b, c\n\na = 1\n\nprint a\n\na = b = 2\n\nprint a, b \n\na = b = c = 3\n\nprint a, b, c\n\nprint a.len()"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "1\n2 2\n3 3 3\n",
+        "stderr": "File main.x, line 15\nprint a.len()\nSyntaxError: objecttype int has no method len\n",
+        "returncode": "3"
+    }
+}

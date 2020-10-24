@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int i = 'A'\n\nprint i\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "65\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

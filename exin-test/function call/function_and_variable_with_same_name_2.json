@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f0()\n    return 123\n    \nprint f0()\n\nf0 = 456"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 6\nf0 = 456\nTypeError: identifier f0 is not a variable\n",
+        "returncode": "2"
+    }
+}

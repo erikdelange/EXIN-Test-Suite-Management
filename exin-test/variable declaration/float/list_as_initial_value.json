@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "float f = [1]\n\nprint f\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nfloat f = [1]\nValueError: cannot convert list to float\n",
+        "returncode": "4"
+    }
+}

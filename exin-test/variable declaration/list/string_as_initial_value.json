@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l = \"A\"\n\nprint l\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nlist l = \"A\"\nValueError: cannot convert str to list\n",
+        "returncode": "4"
+    }
+}

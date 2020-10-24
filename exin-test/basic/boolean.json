@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print !2\nprint !1\nprint !0\nprint\n\nprint 1 and 1\nprint 1 and 0\nprint 0 and 0\nprint\n\nprint 1 or 1\nprint 1 or 0\nprint 0 or 0\nprint\n\nprint 1 and 2 and 3\nprint 0 and 1 and 2\nprint\n\nprint !(1 and 1)\nprint !(0 or 1)"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "0\n0\n1\n\n1\n0\n0\n\n1\n1\n0\n\n1\n0\n\n0\n0\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

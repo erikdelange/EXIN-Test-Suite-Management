@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "char c = ['A']\n\nprint c\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nchar c = ['A']\nValueError: cannot convert list to char\n",
+        "returncode": "4"
+    }
+}

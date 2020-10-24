@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f(x, y)\n\treturn x * y\n\nprint f(10)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 4\nprint f(10)\nSyntaxError: 2 argument(s) expected, 1 found\n",
+        "returncode": "3"
+    }
+}

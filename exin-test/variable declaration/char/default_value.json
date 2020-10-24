@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "char c\n\nprint -raw '>', c, '<'\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": ">\u0000<",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int i\n\ni = 5\nwhile (i -= 1)\n    print i\n    if i > 2\n        continue\n    break\nprint\n\n    \nfor i in [1, 2, 3, 4]\n    if i > 2\n        continue\n    print i\nprint\n\n\nfor i in [1, 2, 3, 4]\n    if i < 2\n        continue\n    print i\nprint\n\n\nfor i in [1, 2, 3, 4]\n    if i == 3\n        continue\n    print i\nprint"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "4\n3\n2\n\n1\n2\n\n2\n3\n4\n\n1\n2\n4\n\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

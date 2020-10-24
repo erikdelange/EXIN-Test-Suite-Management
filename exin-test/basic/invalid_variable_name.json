@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int 1a = 1"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nint 1a = 1\nSyntaxError: expected identifier instead of INTEGER LITERAL\n",
+        "returncode": "3"
+    }
+}

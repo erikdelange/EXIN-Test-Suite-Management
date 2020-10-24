@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int i = [1]\n\nprint i\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nint i = [1]\nValueError: cannot convert list to integer\n",
+        "returncode": "4"
+    }
+}

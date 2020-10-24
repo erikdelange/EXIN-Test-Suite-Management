@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f(x)\n\treturn x\n\nprint g(2)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 4\nprint g(2)\nNameError: identifier g is not defined\n",
+        "returncode": "1"
+    }
+}

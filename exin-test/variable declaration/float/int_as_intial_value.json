@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "float f = 9\n\nprint f\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "9\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

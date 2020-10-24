@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "str a, b, c\n\na = \"s1\"\n\nprint a\n\na = b = \"s2\"\n\nprint a, b \n\na = b = c = \"s3\"\n\nprint a, b, c\n\nprint a.len()\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "s1\ns2 s2\ns3 s3 s3\n2\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

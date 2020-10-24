@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f()\n\treturn 2\n\nprint f()\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "2\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

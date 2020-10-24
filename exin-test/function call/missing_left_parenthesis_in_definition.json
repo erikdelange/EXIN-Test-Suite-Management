@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f x)\n\treturn x\n\nprint f(2)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\ndef f x)\nSyntaxError: expected LPAR instead of IDENTIFIER\n",
+        "returncode": "3"
+    }
+}

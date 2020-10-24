@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int a, b, c, d, e, f, g\n\na = b = c = d = e = f = g = 3 * 4\n\nprint a, b, c, d, e, f, g"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "12 12 12 12 12 12 12\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

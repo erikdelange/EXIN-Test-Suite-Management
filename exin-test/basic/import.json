@@ -1,0 +1,19 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "import \"sub.x\"\n\nfunc(1)\n\nfunc(\"hello\")\n\nprint func(3.14)"
+        },
+        {
+            "name": "sub.x",
+            "code": "def func(x)\n    print x\n    "
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "1\nhello\n3.14\n0\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

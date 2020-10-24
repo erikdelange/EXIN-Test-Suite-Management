@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "str s = \"abcd\"\nprint \"s =\", s, \"\\n\"\n\nprint \"s[1] =\", s[1]\nprint \"s[-2] =\", s[-2]\nprint \"s[:] =\", s[:]\nprint \"s[1:] =\", s[1:]\nprint \"s[:3] =\", s[:3]\nprint \"s[1:3] =\", s[1:3]\nprint \"s[1:-1] =\", s[1:-1]\nprint \"s[-1:3] =\", s[-1:3]\nprint \"s[:][1] =\", s[:][1]\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "s = abcd \n\ns[1] = b\ns[-2] = c\ns[:] = abcd\ns[1:] = bcd\ns[:3] = abc\ns[1:3] = bc\ns[1:-1] = bc\ns[-1:3] = \ns[:][1] = b\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "import \"sub.x\"\n\ndef func(1)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nimport \"sub.x\"\nSystemError: error importing sub.x: No such file or directory (2)\n",
+        "returncode": "5"
+    }
+}

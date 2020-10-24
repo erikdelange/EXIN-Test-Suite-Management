@@ -1,0 +1,23 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "import \"sub.x\"\n\nfunc(1)\n\nfunc(\"hello\")\n\nprint func(3.14)\n"
+        },
+        {
+            "name": "sub.x",
+            "code": "import \"subsub.x\"\n\nprint \"in sub.x\"\n"
+        },
+        {
+            "name": "subsub.x",
+            "code": "print \"in subsub.x\"\n\ndef func(x)\n    print x\n    "
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "in subsub.x\nin sub.x\n1\nhello\n3.14\n0\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

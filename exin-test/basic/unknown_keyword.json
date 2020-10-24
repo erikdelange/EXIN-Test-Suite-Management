@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "integer i = 1"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\ninteger i = 1\nSyntaxError: expected NEWLINE instead of IDENTIFIER\n",
+        "returncode": "3"
+    }
+}

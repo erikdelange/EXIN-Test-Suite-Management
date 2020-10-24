@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f(x)\nreturn x\n\nprint f(2)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 2\nreturn x\nSyntaxError: expected INDENT instead of RETURN\n",
+        "returncode": "3"
+    }
+}

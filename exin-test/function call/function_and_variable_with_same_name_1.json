@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "f0 = 456\n\ndef f0()\n    return 123\n    \nprint f1()\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nf0 = 456\nNameError: identifier f0 is not defined\n",
+        "returncode": "1"
+    }
+}

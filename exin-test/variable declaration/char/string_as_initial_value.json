@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "char c1 = \"A\"\n\nprint c1\n\nchar c2 = \"ABC\"\n\nprint c2\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "A\n",
+        "stderr": "File main.x, line 5\nchar c2 = \"ABC\"\nSyntaxError: to many characters in character constant\n",
+        "returncode": "3"
+    }
+}

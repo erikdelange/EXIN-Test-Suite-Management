@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "float f = 3.14.2"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nfloat f = 3.14.2\nValueError: multiple decimal points\n",
+        "returncode": "4"
+    }
+}

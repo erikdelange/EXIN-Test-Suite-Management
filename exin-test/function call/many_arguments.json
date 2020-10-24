@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def f(a, b, c, d, e, f, g)\n    return a + b + c * d + e * f * g\n\nprint f(1, 2, 3, 4, 5, 6, 7)\n\nprint 1 + 2 + 3 * 4 + 5 * 6 * 7"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "225\n225\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

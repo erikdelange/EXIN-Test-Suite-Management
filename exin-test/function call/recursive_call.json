@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def factorial(x)\n\tif x == 1\n\t\treturn 1\n\telse\n\t\treturn x * factorial(x - 1)\n\nprint factorial(10)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "3628800\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}
