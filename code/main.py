@@ -19,7 +19,8 @@ if __name__ == "__main__":
 
     app = QApplication(sys.argv)
     app.setApplicationName("Testing")
-    app.setOrganizationName("ErikDeLange")
+    app.setOrganizationName("Erik de Lange")
+    app.setOrganizationDomain("https://github.com/erikdelange/EXIN-Test-Suite-Management")
 
     QSettings.setDefaultFormat(QSettings.IniFormat)
 

@@ -16,7 +16,7 @@ stream (stderr) and a program return code (always an integer). You don't need to
 developing the test code after a run the output is captured and stored in the testcase.
 
 Testcases are recorded as *.json* files. Each test contains one or more EXIN scripts. At least one of them is called 
-*main.x*. By recording multiple scripts in a test the *import* statement can be tested. For testing the *input* 
+*main.x*. By recording multiple scripts in a test the *import* statement can be tested easily. For testing the *input* 
 statement you can record characters which are piped to the standard input stream (stdin).
 
 ##### User Interface
@@ -28,7 +28,7 @@ Double clicking on a test results opens both the script edit dialog and the proc
 moves to another test result.
 Context menus (so right click) are used on in the filesystem tree to create new files and folders, and run tests.
 In the test results table with a right mouseclick you can clear and collapse the table. 
-A right click on the tabbar with filenames in the script dialog allows you to add or remove files.
+A right click on the tab-bar with filenames in the script dialog allows you to add or remove files.
 
 ![Main Window](/mainwindow.png)
 *Main window with test results visible and context menu activated in file tree*
@@ -38,12 +38,13 @@ A right click on the tabbar with filenames in the script dialog allows you to ad
 
 ##### Software Architecture
 The program is started by running *main.py* which opens the main window. Every window or dialog is a separate module 
-within package *ui*. All global variables and constants are kept in *config.py*. Code to actually run the interpreter 
-is in *runner.py*. 
+within package *ui*. All global variables and constants are kept in [config.py](/code/config.py). Code to actually run 
+the interpreter is in [runner.py](/code/runner.py). 
 
 ###### Communication between dialogs
 The main window communicates with the script- and result dialogs by sending signals to slots in these two dialogs. To 
-be able to maintain this link the last two dialogs inform the main window whenever they are destroyed. 
+be able to maintain this link the last two dialogs inform the main window whenever they are destroyed, thus cutting
+the link. 
 
 ###### JSON Schema
 Because a test script contains many different components it is stored as a JSON file. Loading incorrectly formatted 
