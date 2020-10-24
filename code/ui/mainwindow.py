@@ -218,7 +218,8 @@ class MainWindow(QMainWindow):
         self.table.model().removeRows(0, self.table.rowCount())
         self.set_fields(self.testresults)
         self.table.resizeColumnsToContents()
-        self.statusbar.showMessage("{} tests executed".format(len(self.testresults)))
+        fail_count = sum(record.status == TestStatus.FAIL for record in self.testresults)
+        self.statusbar.showMessage("{} tests executed, {} failed".format(len(self.testresults), fail_count))
 
         # show results pane if it was collapsed
         sizes = self.splitter.sizes()

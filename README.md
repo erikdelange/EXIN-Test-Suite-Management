@@ -34,7 +34,7 @@ A right click on the tab-bar with filenames in the script dialog allows you to a
 *Main window with test results visible and context menu activated in file tree*
 
 ![Script and Result Dialog](/dialog.png)
-*Script and detail dialog with context menu activated for tabbar in script edit dialog*
+*Script and detail dialog with context menu activated for tab-bar in script edit dialog*
 
 ##### Software Architecture
 The program is started by running *main.py* which opens the main window. Every window or dialog is a separate module 
