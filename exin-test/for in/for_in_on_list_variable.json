@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l =['c', 0, 1.2, \"str\", [4, 5], 6 * 2]\n\nprint \"list with\", l.len(), \"entries\\n\"\n\nfor i in l\n    print \"i =\", i, \"\\t(\" + type(i) + \")\"\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "list with 6 entries\n\ni = c \t(char)\ni = 0 \t(int)\ni = 1.2 \t(float)\ni = str \t(str)\ni = [4,5] \t(list)\ni = 12 \t(int)\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

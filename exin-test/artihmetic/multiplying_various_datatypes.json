@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def multiply(x, y)\n    print -raw x, \" * \", y, \" = \"\n    return x * y\n\nprint multiply(1.1, 2.1)\n\nprint multiply(2, 3)\n\nprint multiply(\"abc\", 4)\n\nprint multiply([1.2, \"ab\", 'c'], 2)\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "1.1 * 2.1 = 2.31\n2 * 3 = 6\nabc * 4 = abcabcabcabc\n[1.2,ab,c] * 2 = [1.2,ab,c,1.2,ab,c]\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

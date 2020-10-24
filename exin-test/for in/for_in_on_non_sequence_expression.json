@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "for c in 1,2,3,4\n\tprint \"c = \", c"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nfor c in 1,2,3,4\nTypeError: type int is not subscriptable\n",
+        "returncode": "2"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print type()\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nprint type()\nSyntaxError: builtin function type expects 1 argument(s) but 0 were given\n",
+        "returncode": "3"
+    }
+}

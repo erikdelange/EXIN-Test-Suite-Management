@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print 1 % 0\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 1\nprint 1 % 0\nDivisionByZeroError: division by zero\n",
+        "returncode": "9"
+    }
+}

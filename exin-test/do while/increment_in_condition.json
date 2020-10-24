@@ -3,12 +3,12 @@
     "code": [
         {
             "name": "main.x",
-            "code": "while 1\n    break\n\ndo\n    break\nwhile 1\n \nfor i in [1, 2, 3, 4]\n    if i == 3\n        break\n    print i\n    \nbreak"
+            "code": "int i = 0\n\ndo\n    print i\nwhile (i += 1) < 5\n"
         }
     ],
     "stdin": "",
     "expected": {
-        "stdout": "1\n2\n",
+        "stdout": "0\n1\n2\n3\n4\n",
         "stderr": "",
         "returncode": "0"
     }

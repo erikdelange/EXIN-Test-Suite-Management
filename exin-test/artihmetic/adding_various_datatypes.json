@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "def add(x, y)\n    print -raw x, \" + \", y, \" = \"\n    return x + y\n\nprint add(11, 22)\t\t\t# two integers\n\nprint add(1.1, 2.2)  \t\t# two floats\n\nprint add(\"abc\", \"def\")  \t# two strings\n\nprint add([1,2], [3,4])\t# two lists\n\nprint add(\"abc\", 'd')\t\t    # string and char\n\nprint add(\"abc\", 123)\t\t# string and int\n\nprint add(\"abc\", 3.14)     # string and float"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "11 + 22 = 33\n1.1 + 2.2 = 3.3\nabc + def = abcdef\n[1,2] + [3,4] = [1,2,3,4]\nabc + d = abcd\nabc + 123 = abc123\nabc + 3.14 = abc3.14\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

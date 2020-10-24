@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print ord(\"A\")\n\nprint ord(\"ABC\")\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "65\n",
+        "stderr": "File main.x, line 3\nprint ord(\"ABC\")\nSyntaxError: to many characters in character constant\n",
+        "returncode": "3"
+    }
+}

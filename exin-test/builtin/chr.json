@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print chr(65)\n\nprint chr(65.0)\n\nprint chr(\"A\")\n\nprint chr('A')\n\nprint chr(['A'])\n\nprint chr(\"ABC\")"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "A\nA\nA\nA\n",
+        "stderr": "File main.x, line 9\nprint chr(['A'])\nValueError: cannot convert list to char\n",
+        "returncode": "4"
+    }
+}

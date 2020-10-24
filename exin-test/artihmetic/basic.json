@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print 2 + 3 + 4\n\nprint 2 + 3 - 4\n\nprint 2 + 3 * 4\n\nprint 2 + 3 / 4.0\n\nprint (2 + 3) + 4\n\nprint (2 + 3) - 4\n\nprint (2 + 3) * 4\n\nprint (2 + 3) / 4.0\n\nprint 2 + (-3 * 4)\n\nprint 2 + (-3 * -4)\n\nprint 2 + -(-3 * -4)\n\nprint (2) + 3 + 4\n\nprint ((2) + (3 + 4))"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "9\n1\n14\n2.75\n9\n1\n20\n1.25\n-10\n14\n-10\n9\n9\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

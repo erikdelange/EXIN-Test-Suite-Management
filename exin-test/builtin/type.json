@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print type(2)\n\nprint type(3.14)\n\nprint type('A')\n\nprint type(\"A\")\n\nprint type(\"ABC\")\n\nprint type([])\n\nprint type([2, 3.14])\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "int\nfloat\nchar\nstr\nstr\nlist\nlist\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int i, j\n\ndo\n    print i\n    i += 1\n    j = 5\n    print '\\t'\n    do\n        print j\n        j -= 1\n    while j\n    print \"\"\nwhile i != 5\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "0\n\t\n5\n4\n3\n2\n1\n\n1\n\t\n5\n4\n3\n2\n1\n\n2\n\t\n5\n4\n3\n2\n1\n\n3\n\t\n5\n4\n3\n2\n1\n\n4\n\t\n5\n4\n3\n2\n1\n\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}
