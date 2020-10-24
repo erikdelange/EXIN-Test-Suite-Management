@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l = ['a',10,2.1,\"bcd\"]\nprint \"l =\", l, \"\\n\"\n\nprint \"l[1] =\", l[1]\n\nprint \"l[-2] =\", l[-2]\n\nprint \"l[:] =\",  l[:]\n\nprint \"l[1:] =\", l[1:]\n\nprint \"l[:3] =\", l[:3]\n\nprint \"l[1:3] =\", l[1:3]\n\nprint \"l[1:-1] =\", l[1:-1]\n\nprint \"l[-1:3] =\", l[-1:3]\n\nprint \"l[:][1] =\", l[:][1]\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "l = [a,10,2.1,bcd] \n\nl[1] = 10\nl[-2] = 2.1\nl[:] = [a,10,2.1,bcd]\nl[1:] = [10,2.1,bcd]\nl[:3] = [a,10,2.1]\nl[1:3] = [10,2.1]\nl[1:-1] = [10,2.1]\nl[-1:3] = []\nl[:][1] = 10\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

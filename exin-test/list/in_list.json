@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list lst = [1, 'c', 3.14, \"def\", [4, 5]]\n\nprint 0 in lst\nprint 1 in lst\nprint\n\nprint 'b' in lst\nprint 'c' in lst\nprint\n \nprint 4.13 in lst\nprint 3.14 in lst\nprint\n\nprint \"abc\" in lst\nprint \"def\" in lst\nprint\n\nprint [] in lst\nprint [4] in lst\nprint [4, 5] in lst"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "0\n1\n\n0\n1\n\n0\n1\n\n0\n1\n\n0\n0\n1\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

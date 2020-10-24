@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l1 = [1, 'b', 3.14, [0, 1]]\nlist l2 = [1, 'b', 3.14, [0, 1]] \n\nprint l1 == l2\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "1\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

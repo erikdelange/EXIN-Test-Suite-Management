@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l = [1,2,3,4,5]\nint i = 4\n\nwhile i\n\tl.remove(-1)\n\ti -= 1\n\nprint l\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "[1]\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

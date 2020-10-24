@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print 3.14"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "3.14\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

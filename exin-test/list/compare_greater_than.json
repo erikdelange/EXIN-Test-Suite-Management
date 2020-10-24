@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l1 = [1, 'b', 3.14]\nlist l2 = [1, 'b', 3.14] \n\nprint l1 > l2\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "",
+        "stderr": "File main.x, line 4\nprint l1 > l2\nTypeError: unsupported operand type(s) for operation >: list and list\n",
+        "returncode": "2"
+    }
+}

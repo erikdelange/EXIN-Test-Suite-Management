@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "list l\nint i = 5\n\nwhile i\n\tl.append(i)\n\ti -= 1\n\nprint l \n\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "[5,4,3,2,1]\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

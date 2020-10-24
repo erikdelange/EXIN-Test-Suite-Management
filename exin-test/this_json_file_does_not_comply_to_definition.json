@@ -1,0 +1,18 @@
+{
+    "description": "A simple test",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "print \"hallo\"\n\nprint 1 / 0"
+        },
+        {
+            "code": "# this file does nothing\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "hallo\n",
+        "stderr": "File main.x, line 3\nprint 1 / 0\nDivisionByZeroError: division by zero\n",
+        "returncode": "9"
+    }
+}
