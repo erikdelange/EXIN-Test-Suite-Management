@@ -31,7 +31,10 @@ In the test results table with a right mouseclick you can clear and collapse the
 A right click on the tabbar with filenames in the script dialog allows you to add or remove files.
 
 ![Main Window](/mainwindow.png)
+*Main window with test results visible and context menu activated in file tree*
+
 ![Script and Result Dialog](/dialog.png)
+*Script and detail dialog with context menu activated for tabbar in script edit dialog*
 
 ##### Software Architecture
 The program is started by running *main.py* which opens the main window. Every window or dialog is a separate module 
@@ -45,24 +48,25 @@ be able to maintain this link the last two dialogs inform the main window whenev
 ###### JSON Schema
 Because a test script contains many different components it is stored as a JSON file. Loading incorrectly formatted 
 JSON files can cause a program crash. Therefore the correct layout is described using JSON Schema, and checked 
-whenever a file is  loaded. The definition can be found in [config.py](config.py).
+whenever a file is  loaded. The definition can be found in [config.py](/code/config.py).
 
 ###### Loading the UI
 The user interface is created in Qt Designer and stored as XML code in *.ui* files. There are two ways to render 
 the UI. The first one is by compiling the XML code into a Python object using PyQt5's utility *pyuic5*.
-However I have chosen to load the ui dynamically (see [loadui.py](loadui.py)). This avoids having to compile the *.ui* 
-files  every time you make a change. The downside is that the names of the form elements are not known during coding, 
-so your IDE cannot check them. To easily find naming errors during development run your code in debug mode; in case of 
-a crash the name of the variable you've missed is written to the console. 
+However I have chosen to load the ui dynamically (see [loadui.py](/code/ui/loadui.py)). This avoids having to compile 
+the *.ui* files  every time you make a change. The downside is that the names of the form elements are not known during 
+coding, so your IDE cannot check them. To easily find naming errors during development run your code in debug mode; in 
+case of a crash the name of the variable you've missed is written to the console. 
 
 ###### Window geometry
 The window position and size, and the place of the various splitters which separate the panes are saved when
 closing a dialog and restored when opening the dialog again. On Windows these settings are stored in an *.ini* file. 
 
 ###### Qt Designer
-Package pyqt5-tools contains Qt Designer. It can be found in your Python installation directory in Scripts\designer.exe.
+Package pyqt5-tools contains Qt Designer. It can be found in your Python installation directory as Scripts\designer.exe.
 
 ![Qt Desginer](/qtdesigner.png)
+*Qt Designer open for all three dialogs*
 
 ###### Universal?
 The approach here can be used for testing any separate executable for which you can pipe stdin and capture stdout and 
