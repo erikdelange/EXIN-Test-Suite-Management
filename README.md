@@ -39,17 +39,18 @@ A right click on the tab-bar with filenames in the script dialog allows you to a
 ##### Software Architecture
 The program is started by running *main.py* which opens the main window. Every window or dialog is a separate module 
 within package *ui*. All global variables and constants are kept in [config.py](/code/config.py). Code to actually run 
-the interpreter is in [runner.py](/code/runner.py). 
+the interpreter and capture the output is in [runner.py](/code/runner.py). 
 
 ###### Communication between dialogs
 The main window communicates with the script- and result dialogs by sending signals to slots in these two dialogs. To 
 be able to maintain this link the last two dialogs inform the main window whenever they are destroyed, thus cutting
-the link. 
+the link (using the destroyed signal). 
 
 ###### JSON Schema
 Because a test script contains many different components it is stored as a JSON file. Loading incorrectly formatted 
-JSON files can cause a program crash. Therefore the correct layout is described using JSON Schema, and checked 
-whenever a file is  loaded. The definition can be found in [config.py](/code/config.py).
+JSON files can cause a program crash. Therefore the correct layout is described using 
+[JSON Schema](https://json-schema.org/), and checked whenever a file is  loaded. The definition for a test 
+script can be found in [config.py](/code/config.py).
 
 ###### Loading the UI
 The user interface is created in Qt Designer and stored as XML code in *.ui* files. There are two ways to render 
@@ -62,9 +63,11 @@ case of a crash the name of the variable you've missed is written to the console
 ###### Window geometry
 The window position and size, and the place of the various splitters which separate the panes are saved when
 closing a dialog and restored when opening the dialog again. On Windows these settings are stored in an *.ini* file. 
+The name of this file is written to the logger when starting the application.  
 
 ###### Qt Designer
-Package pyqt5-tools contains Qt Designer. It can be found in your Python installation directory as Scripts\designer.exe.
+Package pyqt5-tools contains the Qt Designer executable. It can be found in your Python installation directory 
+as Scripts\designer.exe.
 
 ![Qt Desginer](/qtdesigner.png)
 *Qt Designer open for all three dialogs*
