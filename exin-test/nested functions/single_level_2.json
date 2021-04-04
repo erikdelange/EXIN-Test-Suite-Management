@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "int n = 2\n\ndef f()\n    int n = 5\n    \n    def g()\n        print \"n in g() =\", n\n\n    g()\n    \nprint n     \n\nf()\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "2\nn in g() = 5\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}

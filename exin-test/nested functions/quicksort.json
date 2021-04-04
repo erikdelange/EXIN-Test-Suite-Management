@@ -1,0 +1,15 @@
+{
+    "description": "",
+    "code": [
+        {
+            "name": "main.x",
+            "code": "# Nested function example. Sorts a list containing integers.\n#\n# Taken from https://en.wikipedia.org/wiki/Nested_function\n\ndef sort(items)\n    def quicksort(first, last)   \n        def swap(p, q)\n            int tmp = items[p]\n            items[p] = items[q]\n            items[q] = tmp\n\n        def partition()\n            int pivot = items[first]\n            int index = first\n            \n            swap(index, last)\n\n            int i = first\n            while i < last\n                if items[i] < pivot\n                    swap(index, i)\n                    index += 1\n                i += 1\n\n            swap(index, last)\n        \n            return index\n\n        if first < last\n            int pivotindex = partition()\n            quicksort(first, pivotindex - 1)\n            quicksort(pivotindex + 1, last)\n\n    quicksort(0, items.len() - 1)  \n    return items\n\n    \nlist l = [3, 1, 0, 2]\n\nprint \"unsorted list\", l\n\nl = sort(l)\n\nprint \"sorted list\", l\n\n"
+        }
+    ],
+    "stdin": "",
+    "expected": {
+        "stdout": "unsorted list [3,1,0,2]\nsorted list [0,1,2,3]\n",
+        "stderr": "",
+        "returncode": "0"
+    }
+}
