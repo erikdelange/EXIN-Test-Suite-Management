@@ -67,6 +67,14 @@
        <enum>Qt::Vertical</enum>
       </property>
       <widget class="QMdiArea" name="mdiArea">
+       <property name="font">
+        <font>
+         <family>Consolas</family>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="viewMode">
         <enum>QMdiArea::TabbedView</enum>
        </property>

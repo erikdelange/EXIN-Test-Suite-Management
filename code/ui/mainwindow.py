@@ -12,8 +12,9 @@ import logging
 import os
 from typing import List
 
-from PyQt5.QtCore import QEvent, QModelIndex, QPoint, QSettings, Qt, pyqtSignal, pyqtSlot
-from PyQt5.QtWidgets import QApplication, QFileDialog, QFileSystemModel, QInputDialog, QMainWindow, QMenu, \
+from PyQt6.QtCore import QModelIndex, QPoint, QSettings, Qt, pyqtSignal, pyqtSlot
+from PyQt6.QtGui import QCloseEvent, QFileSystemModel
+from PyQt6.QtWidgets import QApplication, QFileDialog, QInputDialog, QMainWindow, QMenu, \
     QMessageBox, QTableWidgetItem, QWidget
 
 import config
@@ -34,7 +35,7 @@ class MainWindow(QMainWindow):
 
         ui.loadUi(__file__, self)
 
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setWindowTitle(QApplication.applicationName())
 
         self.load_window_geometry()
@@ -54,20 +55,20 @@ class MainWindow(QMainWindow):
         self.model = QFileSystemModel()
         self.view.setModel(self.model)
         self.model.rootPathChanged.connect(self.on_QFileSystemModel_rootPathChanged)
-        self.model.setNameFilters(["*{}".format(config.extension)])
+        self.model.setNameFilters([f"*{config.extension}"])
         self.model.setNameFilterDisables(False)
         self.view.setRootIndex(self.model.index(config.scriptroot))
         self.view.hideColumn(1)  # filesize
         self.view.hideColumn(2)  # type
         self.view.setSortingEnabled(True)
-        self.view.sortByColumn(1, Qt.AscendingOrder)  # name
+        self.view.sortByColumn(1, Qt.SortOrder.AscendingOrder)  # name
         self.view.setColumnWidth(0, 200)
-        self.view.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.view.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
 
         # Setup the results table
         self.table = self.tableTestResult  # QTableWidget
         self.table.hideColumn(3)  # column 3 is index into self.testresults
-        self.table.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.table.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         sizes = self.splitter.sizes()
         self.splitter.setSizes([sizes[0] + sizes[1], 0])  # collapse right panel (= results)
 
@@ -79,7 +80,7 @@ class MainWindow(QMainWindow):
             self.model.setRootPath(config.scriptroot)
         logging.info("script root directory is {}".format(config.scriptroot))
 
-    def closeEvent(self, event: QEvent):
+    def closeEvent(self, event: QCloseEvent):
         """" Event triggered at window close. """
         if self.resultDialog:  # close child window(s) (if any)
             self.resultDialog.close()
@@ -170,6 +171,7 @@ class MainWindow(QMainWindow):
             if self.scriptDialog is None:
                 self.scriptDialog = ui.ScriptDialog(script=self.model.filePath(index))
                 self.showScript.connect(self.scriptDialog.showScript)
+                self.showScript.connect(self.scriptDialog.showScript)
                 self.newScript.connect(self.scriptDialog.newScript)
                 self.scriptDialog.destroyed.connect(self.on_scriptDialogDestroyed)
                 self.scriptDialog.show()
@@ -190,7 +192,7 @@ class MainWindow(QMainWindow):
             menu.addAction(NEWFOLDER)
             menu.addAction(NEWFILE)
 
-        action = menu.exec_(self.view.viewport().mapToGlobal(point))
+        action = menu.exec(self.view.viewport().mapToGlobal(point))
 
         if action is not None:
             if action.text() == TEST:
@@ -215,11 +217,12 @@ class MainWindow(QMainWindow):
         if self.resultDialog:
             self.resultDialog.close()
 
-        self.table.model().removeRows(0, self.table.rowCount())
+        for i in reversed(range(self.table.rowCount())):
+            self.table.removeRow(i)
         self.set_fields(self.testresults)
         self.table.resizeColumnsToContents()
         fail_count = sum(record.status == TestStatus.FAIL for record in self.testresults)
-        self.statusbar.showMessage("{} tests executed, {} failed".format(len(self.testresults), fail_count))
+        self.statusbar.showMessage(f"{len(self.testresults)} tests executed, {fail_count} failed")
 
         # show results pane if it was collapsed
         sizes = self.splitter.sizes()
@@ -305,11 +308,11 @@ class MainWindow(QMainWindow):
                 self.scriptDialog.destroyed.connect(self.on_scriptDialogDestroyed)
                 self.scriptDialog.show()
         else:
-            windowtitle = "Exception for {}".format(os.path.relpath(self.testresults[idx].script, config.scriptroot))
-            box = QMessageBox(QMessageBox.Warning, windowtitle, "", QMessageBox.Ok)
+            windowtitle = f"Exception for {os.path.relpath(self.testresults[idx].script, config.scriptroot)}"
+            box = QMessageBox(QMessageBox.Icon.Warning, windowtitle, "", QMessageBox.StandardButtons.Ok)
             box.setText(self.testresults[idx].processresult.exception)
             box.setInformativeText(str(self.testresults[idx].processresult.exceptiondetail))
-            box.exec_()
+            box.exec()
 
     @pyqtSlot(QPoint)
     def on_tableTestResult_customContextMenuRequested(self, point: QPoint):
@@ -320,11 +323,12 @@ class MainWindow(QMainWindow):
         menu.addAction(CLEAR)
         menu.addAction(HIDE)
 
-        action = menu.exec_(self.table.viewport().mapToGlobal(point))
+        action = menu.exec(self.table.viewport().mapToGlobal(point))
 
         if action is not None:
             if action.text() == CLEAR:
-                self.table.model().removeRows(0, self.table.rowCount())
+                for i in reversed(range(self.table.rowCount())):
+                    self.table.removeRow(i)
                 self.table.resizeColumnsToContents()
                 self.statusbar.clearMessage()
             elif action.text() == HIDE:
@@ -340,5 +344,5 @@ class MainWindow(QMainWindow):
 
     @pyqtSlot()
     def on_resultDialogDestroyed(self):
-        """ Slot for destroyed signal from resultlDialog. """
+        """ Slot for destroyed signal from resultDialog. """
         self.resultDialog = None

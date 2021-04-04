@@ -46,13 +46,13 @@ def run_single_script(files: SourceCodeFileList, stdin: str = "") -> Tuple[bool,
                               encoding="utf-8",
                               timeout=config.timeout)
     except subprocess.TimeoutExpired:
-        result = ProcessResult(exception="command timed out after {} seconds".format(config.timeout))
+        result = ProcessResult(exception=f"command timed out after {config.timeout} seconds")
     except FileNotFoundError:
-        result = ProcessResult(exception="interpreter {} not found".format(config.interpreter))
+        result = ProcessResult(exception=f"interpreter {config.interpreter} not found")
     except OSError as e:
-        result = ProcessResult(exception="{} ({})".format(os.strerror(e.errno), e.errno))
-    except Exception as e:
-        result = ProcessResult(exception="unexpected exception {}".format(e))  # for debugging only
+        result = ProcessResult(exception=f"{os.strerror(e.errno)} ({e.errno})")
+    except Exception as e:  # for debugging only
+        result = ProcessResult(exception=f"unexpected exception {e}")
     else:
         result = ProcessResult(stdout=info.stdout,
                                stderr=info.stderr,
@@ -90,14 +90,14 @@ def run_single_test(script: str) -> TestResult:
             else:  # ok == False, run failed
                 status = TestStatus.EXCEPTION
     except (jsonschema.ValidationError, jsonschema.SchemaError) as e:
-        processresult = ProcessResult(exception="JSON Schema {}".format(type(e).__name__), exceptiondetail=e)
+        processresult = ProcessResult(exception=f"JSON Schema {type(e).__name__}", exceptiondetail=e)
         status = TestStatus.EXCEPTION
     except (OSError, ValueError) as e:
-        processresult = ProcessResult(exception="{} while loading {}: {}"
-                                      .format(type(e).__name__, os.path.relpath(script, config.scriptroot), e))
+        processresult = ProcessResult(
+            exception=f"{type(e).__name__} while loading {os.path.relpath(script, config.scriptroot)}: {e}")
         status = TestStatus.EXCEPTION
-    except Exception as e:
-        processresult = ProcessResult(exception="unexpected exception {}".format(e))  # for debugging only
+    except Exception as e:  # for debugging only
+        processresult = ProcessResult(exception=f"unexpected exception {e}")
         status = TestStatus.EXCEPTION
 
     return TestResult(script=script, status=status, processresult=processresult)

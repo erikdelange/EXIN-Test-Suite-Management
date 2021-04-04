@@ -16,10 +16,10 @@ import os
 from typing import Optional
 
 import jsonschema
-from PyQt5.Qsci import QsciScintilla
-from PyQt5.QtCore import QEvent, QModelIndex, QPoint, QRegExp, QSettings, Qt, pyqtSlot
-from PyQt5.QtGui import QColor
-from PyQt5.QtWidgets import QDialog, QInputDialog, QMdiSubWindow, QMenu, QMessageBox, QTabBar, QWidget
+from PyQt6.Qsci import QsciScintilla
+from PyQt6.QtCore import QModelIndex, QPoint, QRegularExpression, QSettings, Qt, pyqtSlot
+from PyQt6.QtGui import QCloseEvent, QColor
+from PyQt6.QtWidgets import QDialog, QInputDialog, QMdiSubWindow, QMenu, QMessageBox, QTabBar, QWidget
 
 import config
 import runner
@@ -29,14 +29,14 @@ import ui
 class ScriptDialog(QDialog):
     """" Script edit and run dialog. """
 
-    regexp = QRegExp("^[\w]+\{}$".format(config.extension))  # rules for valid file name
+    pattern = QRegularExpression.anchoredPattern(f"^[\w]+\{config.extension}$")  # rules for valid file name
 
     def __init__(self, parent: QWidget = None, script: str = None, folder: str = ""):
         super().__init__(parent)
 
         ui.loadUi(__file__, self)
 
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setWindowTitle("Edit Script")
 
         self.load_window_geometry()
@@ -45,10 +45,10 @@ class ScriptDialog(QDialog):
         self.folder = folder
 
         self.tabBar = self.mdiArea.findChild(QTabBar)
-        self.tabBar.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.tabBar.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
         self.tabBar.customContextMenuRequested.connect(self.on_tabBar_customContextMenuRequested)
 
-        self.mdiArea.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.mdiArea.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
 
         if script:
             self.show()  # early show() required for ui manipulation in load_script_from_json() to work
@@ -56,7 +56,7 @@ class ScriptDialog(QDialog):
         else:
             self.addSubWindow(config.mainfile)
 
-    def closeEvent(self, event: QEvent):
+    def closeEvent(self, event: QCloseEvent):
         """" Event triggered at window close. """
         self.save_if_modified()
 
@@ -139,7 +139,8 @@ class ScriptDialog(QDialog):
         """
         if self.is_modified():
             if QMessageBox.question(self, self.windowTitle(), "Modifications have not been saved. Save modifications?",
-                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes) == QMessageBox.Yes:
+                                    QMessageBox.StandardButtons.Yes | QMessageBox.StandardButtons.No,
+                                    QMessageBox.StandardButtons.Yes) == QMessageBox.StandardButtons.Yes:
                 if self.script:
                     self.save_script_to_json(self.script)
                 else:  # this is a new script - validate filename
@@ -148,21 +149,24 @@ class ScriptDialog(QDialog):
                         name, ok = QInputDialog.getText(self, "Enter name", "Name", text=name)
                         if ok is False:
                             if QMessageBox.warning(self, "Abort Save", "File will not be saved. Is this OK?",
-                                                   QMessageBox.Yes | QMessageBox.No, QMessageBox.No) == QMessageBox.Yes:
+                                                   QMessageBox.StandardButtons.Yes | QMessageBox.StandardButtons.No,
+                                                   QMessageBox.StandardButtons.No) == QMessageBox.StandardButtons.Yes:
                                 break  # no save
                         name = name.strip()
-                        if self.regexp.exactMatch(name) is False:
-                            box = QMessageBox(QMessageBox.Warning, "Filename Error", "", QMessageBox.Retry)
-                            box.setText("Filename {} is not allowed.".format(name))
+                        if QRegularExpression(self.pattern).match(name).hasMatch() is False:
+                            box = QMessageBox(QMessageBox.Icon.Warning, "Filename Error", "",
+                                              QMessageBox.StandardButtons.Retry)
+                            box.setText(f"Filename {name} is not allowed.")
                             box.setDetailedText(
-                                "Filename must comply to regular expression pattern {}. "
-                                "Valid examples are file.json and file_name.json.".format(self.regexp.pattern()))
-                            box.exec_()
+                                f"Filename must comply to regular expression pattern {self.pattern}. "
+                                "Valid examples are file.json and file_name.json.")
+                            box.exec()
                         else:
                             if os.path.exists(os.path.join(self.folder, name)):
-                                box = QMessageBox(QMessageBox.Warning, "Save Error", "", QMessageBox.Retry)
-                                box.setText("Name {} is already in use".format(name))
-                                box.exec_()
+                                box = QMessageBox(QMessageBox.Icon.Warning, "Save Error", "",
+                                                  QMessageBox.StandardButtons.Retry)
+                                box.setText(f"Name {name} is already in use")
+                                box.exec()
                             else:
                                 self.save_script_to_json(os.path.join(self.folder, name))
                                 self.lineScriptName.setEnabled(False)
@@ -180,11 +184,11 @@ class ScriptDialog(QDialog):
                 jsonschema.validate(data, config.testschema)  # check if JSON complies to definition
             except (OSError, json.JSONDecodeError, jsonschema.ValidationError, jsonschema.SchemaError) as e:
                 logging.error("{} while loading {}: {}".format(type(e).__name__, filename, e))
-                box = QMessageBox(QMessageBox.Critical, "Exception", "", QMessageBox.Ok)
-                text = "{} while loading {}".format(type(e).__name__, os.path.relpath(filename, config.scriptroot))
+                box = QMessageBox(QMessageBox.Icon.Critical, "Exception", "", QMessageBox.StandardButtons.Ok)
+                text = f"{type(e).__name__} while loading {os.path.relpath(filename, config.scriptroot)}"
                 box.setText(text)
                 box.setInformativeText(str(e))
-                box.exec_()
+                box.exec()
             else:
                 self.lineScriptName.setText(os.path.relpath(filename, config.scriptroot))
                 self.lineScriptName.setEnabled(False)
@@ -271,7 +275,7 @@ class ScriptDialog(QDialog):
         menu = QMenu(self)
         menu.addAction(NEW)
 
-        action = menu.exec_(self.mdiArea.viewport().mapToGlobal(point))
+        action = menu.exec(self.mdiArea.viewport().mapToGlobal(point))
 
         if action is not None:
             if action.text() == NEW:
@@ -288,7 +292,7 @@ class ScriptDialog(QDialog):
         menu.addAction(DELETE)
 
         index = self.tabBar.tabAt(point)
-        action = menu.exec_(self.mdiArea.viewport().mapToGlobal(point))
+        action = menu.exec(self.mdiArea.viewport().mapToGlobal(point))
 
         if action is not None:
             if action.text() == NEW:
@@ -302,7 +306,7 @@ class ScriptDialog(QDialog):
             name, ok = QInputDialog.getText(self, "Enter name of new file", "Filename")
             if ok:
                 if self.findSubWindow(name):
-                    QMessageBox.warning(self, "New File", "Filename {} is already in use".format(name))
+                    QMessageBox.warning(self, "New File", f"Filename {name} is already in use")
                 else:
                     self.addSubWindow(name)
                     break
@@ -318,7 +322,7 @@ class ScriptDialog(QDialog):
             else:
                 if index == self.tabBar.currentIndex():
                     if self.tabBar.count() > 1:
-                        newIndex = index - 1
+                        newIndex = int(index) - 1
                         if newIndex < 0:
                             newIndex = self.tabBar.count() - 1
                         self.tabBar.setCurrentIndex(newIndex)
@@ -346,10 +350,10 @@ class ScriptDialog(QDialog):
             self.textStderr.document().setPlainText(result.stderr)
             self.lineReturnCode.setText(result.returncode)
         else:
-            box = QMessageBox(QMessageBox.Critical, "Error during execution", "", QMessageBox.Ok)
+            box = QMessageBox(QMessageBox.Icon.Critical, "Error during execution", "", QMessageBox.StandardButtons.Ok)
             box.setText(result.exception)
             box.setInformativeText(result.exceptiondetail)
-            box.exec_()
+            box.exec()
 
     @pyqtSlot()
     def on_buttonClose_clicked(self):
@@ -384,10 +388,10 @@ def createQScintillaWidget(parent: QWidget, name: str) -> QsciScintilla:
 
 def setupQScintillaWidget(widget: QsciScintilla) -> None:
     """ Initialize a QsciScintilla widget. """
-    widget.setMarginType(0, QsciScintilla.NumberMargin)
+    widget.setMarginType(0, QsciScintilla.MarginType.NumberMargin)
     widget.setMarginWidth(0, "0000")
     widget.setMarginsForegroundColor(QColor("#ff888888"))
-    widget.setEolMode(QsciScintilla.EolUnix)
+    widget.setEolMode(QsciScintilla.EolMode.EolUnix)
     widget.setIndentationsUseTabs(False)
     widget.setTabWidth(4)
     widget.setIndentationGuides(True)

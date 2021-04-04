@@ -6,7 +6,10 @@ EXIN is a home-brewn programming language and an interpreter for it can be found
 The interpreter is a complex piece of software and adding new features can easily break existing code. By running 
 regression tests after each change these bugs are spotted quickly. As the EXIN programming language contains many 
 elements which can be combined in multiple ways many tests are needed. This project enables you to record and manage 
-these tests and run (parts of) them with just a few mouse clicks.
+these tests and run (parts of) them with just a few mouse clicks. 
+
+Although I use it to test EXIN this solution is universally applicable for testing any separate executable for which 
+you can pipe stdin and capture stdout and stderr.
 
 ##### Basics
 Testing the interpreter is done by having it interpret EXIN code, capturing the output and comparing it with the 
@@ -66,13 +69,13 @@ closing a dialog and restored when opening the dialog again. On Windows these se
 The name of this file is written to the logger when starting the application.  
 
 ###### Qt Designer
-Package pyqt5-tools contains the Qt Designer executable. It can be found in your Python installation directory 
-as Scripts\designer.exe.
+Package pyqt5-tools contains the Qt Designer executable. It can be found in the Scripts directory of your Python 
+installation. See [pypi](https://pypi.org/project/pyqt5-tools/) for the exact name of the designer executable.
 
 ![Qt Desginer](/qtdesigner.png)
 *Qt Designer open for all three dialogs*
 
 ###### Universal?
-The approach here can be used for testing any separate executable for which you can pipe stdin and capture stdout and 
-stderr. If you need to specify more files when starting the executable then small changes to 
+The approach is universal as long as you want to test a separate executable for which you can pipe stdin and capture 
+stdout and stderr (if needed). If you need to specify more files when starting the executable then small changes to 
 function *runner.run_single_script* might be needed.

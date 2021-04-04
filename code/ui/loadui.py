@@ -3,8 +3,8 @@
 import os
 import sys
 
-from PyQt5 import uic
-from PyQt5.QtWidgets import QWidget
+from PyQt6 import uic
+from PyQt6.QtWidgets import QWidget
 
 import config
 
@@ -27,17 +27,18 @@ def loadUi(module_path: str, widget: QWidget, basename: str = None):
         # If script is frozen read the ui files from a directory named 'ui'.
         # BEWARE: this directory-name is hard-coded. So for a frozen script
         # do not forget to copy all *.ui files to 'ui' in the build directory.
-        basepath = os.path.join(config.appdir, "ui")
+        base_path = os.path.join(config.appdir, "ui")
     else:
-        basepath = os.path.dirname(module_path)
+        base_path = os.path.dirname(module_path)
 
     if basename is None:
         basename = widget.__class__.__name__.lower()
 
-    uifile = os.path.join(basepath, "{}.ui".format(basename))
+    ui_file = os.path.join(base_path, f"{basename}.ui")
 
-    # raise FileNotFoundError if uifile cannot be found to avoid mysterious Qt errors
-    with open(uifile, mode="r"):
+    # debugging aid: raise FileNotFoundError if ui_file cannot be found
+    # to avoid mysterious Qt errors
+    with open(ui_file, mode="r"):
         pass
 
-    uic.loadUi(uifile, widget)
+    uic.loadUi(ui_file, widget)

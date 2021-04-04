@@ -6,8 +6,9 @@ calling slot showResult. Read-only dialog.
 """
 import os
 
-from PyQt5.QtCore import QEvent, QSettings, Qt, pyqtSlot
-from PyQt5.QtWidgets import QDialog, QWidget
+from PyQt6.QtCore import QSettings, Qt, pyqtSlot
+from PyQt6.QtGui import QCloseEvent
+from PyQt6.QtWidgets import QDialog, QWidget
 
 import config
 import ui
@@ -21,7 +22,7 @@ class ProcessResultDialog(QDialog):
 
         ui.loadUi(__file__, self)
 
-        self.setAttribute(Qt.WA_DeleteOnClose)
+        self.setAttribute(Qt.WidgetAttribute.WA_DeleteOnClose)
         self.setWindowTitle("Actual Results")
 
         self.load_window_geometry()
@@ -29,7 +30,7 @@ class ProcessResultDialog(QDialog):
         if testresult:
             self.set_fields(testresult)
 
-    def closeEvent(self, event: QEvent):
+    def closeEvent(self, event: QCloseEvent):
         """" Event triggered at window close. """
         self.save_window_geometry()
 
